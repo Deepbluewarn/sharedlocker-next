@@ -5,10 +5,10 @@ export function SignIn() {
     <form
       action={async () => {
         "use server"
-        await signIn()
+        await signIn('kakao')
       }}
     >
-      <button type="submit">Sign in</button>
+      <button type="submit">Signin with Kakao</button>
     </form>
   )
 }

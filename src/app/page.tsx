@@ -5,19 +5,21 @@ import { SignIn } from "./components/signin-button";
 export default async function Home() {
   const session = await auth()
 
+  const role = session?.user.role;
+
   return (
     <>
       <h1>Home</h1>
-      {JSON.stringify(session)}
-
       {
         session?.user ? (
-          <SignOut />
+          <>
+            <p>{`You are ${role}, Welcome!`}</p>
+            <SignOut />
+          </>
         ) : (
           <SignIn />
         )
       }
     </>
-
   );
 }
