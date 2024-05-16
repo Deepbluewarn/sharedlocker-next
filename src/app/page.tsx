@@ -1,7 +1,9 @@
 import { cookies } from "next/headers";
 import Link from "next/link";
-import fetchUserInfo from "./actions/userInfo";
-import SignOutForm from "@/components/LogoutForm";
+import fetchUserInfo from "../actions/userInfo";
+import SignOutForm from "@/components/auth/LogoutForm";
+import AdminPanel from "@/components/admin/AdminPanel";
+import UserInfo from "@/components/user/UserGreet";
 
 export default async function Home() {
   const cookieStore = cookies()
@@ -10,14 +12,16 @@ export default async function Home() {
   let component = null
 
   if (typeof accessToken !== 'undefined') {
+    const user = await fetchUserInfo();
+
     component = (
       <>
         <h1>Home</h1>
         <SignOutForm />
 
-        {
-          JSON.stringify(await fetchUserInfo())
-        }
+        <AdminPanel />
+
+        <UserInfo userInfo={user.message}/>
       </>
     )
   } else {

@@ -1,6 +1,6 @@
 'use client'
 
-import signIn from "../actions/signIn"
+import signIn from "../../actions/signIn"
 import { useFormState } from "react-dom"
 
 const initialState = {

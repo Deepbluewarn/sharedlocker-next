@@ -2,17 +2,16 @@
 
 import { cookies } from "next/headers"
 
-export default async function fetchUserInfo() {
+export async function fetchAdmin() {
     const cookieStore = cookies()
-    
-    const fetch_res = await fetch(`${process.env.API_BASE_URL}/api/user`, {
-        method: 'GET',
+
+    const res = await fetch(`${process.env.API_BASE_URL}/api/admin`, {
+        method: 'POST',
+        credentials: 'include',
         headers: {
             'Authorization': `Bearer ${cookieStore.get(process.env.ACCESS_TOKEN_COOKIE_NAME!)?.value}`,
             'Content-Type': 'application/json',
         },
-        cache: 'no-cache',
-    });
-
-    return fetch_res.json()
+    })
+    return res.json()
 }

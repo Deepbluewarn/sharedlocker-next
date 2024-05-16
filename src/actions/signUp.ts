@@ -14,7 +14,6 @@ async function fetchSignUp(formData: FormData) {
             nickname: formData.get('name'),
             email: formData.get('email'),
         }),
-        cache: 'no-cache',
     }).then((res) => res.json())
 }
 

@@ -17,7 +17,6 @@ async function fetchSignIn(formData: FormData) {
             id: formData.get('id'),
             password: formData.get('password'),
         }),
-        cache: 'no-cache',
     }).then((res) => {
         console.log(res.headers.getSetCookie())
 
