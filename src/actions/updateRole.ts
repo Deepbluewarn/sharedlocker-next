@@ -1,10 +1,9 @@
 'use server'
 
-import { IUserInfo } from "@/components/user/UserInfo";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export async function fetchUpdateRole(userId: string, role: string) {
+export async function fetchUpdateRole(userId: string, role: string, assignedLockerBuilding: string) {
     const cookieStore = cookies()
 
     const res = await fetch(`${process.env.API_BASE_URL}/api/user/role`, {
@@ -13,7 +12,7 @@ export async function fetchUpdateRole(userId: string, role: string) {
             'Authorization': `Bearer ${cookieStore.get(process.env.ACCESS_TOKEN_COOKIE_NAME!)?.value}`,
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId, role }),
+        body: JSON.stringify({ userId, role, assignedLockerBuilding }),
     });
 
     return res.json()
@@ -22,9 +21,10 @@ export async function fetchUpdateRole(userId: string, role: string) {
 export default async function UpdateRoleForm(prevState: string, formData: FormData) {
     const userId = formData.get('userId') as string
     const selectedRole = formData.get('selectedRole') as string
+    const assignedLockerBuilding = formData.get('assignedLockerBuilding') as string
 
 
-    const fetch_res = await fetchUpdateRole(userId, selectedRole)
+    const fetch_res = await fetchUpdateRole(userId, selectedRole, assignedLockerBuilding)
 
     console.log('UpdateRoleForm fetch_res Response:', fetch_res)
 

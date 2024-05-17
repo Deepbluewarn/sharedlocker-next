@@ -2,8 +2,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import fetchUserInfo from "../actions/userInfo";
 import SignOutForm from "@/components/auth/LogoutForm";
-import AdminPanel from "@/components/admin/AdminPanel";
-import UserInfo from "@/components/user/UserGreet";
+import UserGreet from "@/components/user/UserGreet";
 
 export default async function Home() {
   const cookieStore = cookies()
@@ -19,9 +18,9 @@ export default async function Home() {
         <h1>Home</h1>
         <SignOutForm />
 
-        <AdminPanel />
+        <Link href='/admin'>관리자 페이지</Link>
 
-        <UserInfo userInfo={user.message}/>
+        <UserGreet userInfo={user.message}/>
       </>
     )
   } else {
