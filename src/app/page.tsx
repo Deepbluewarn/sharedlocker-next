@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import Link from "next/link";
-import fetchUserInfo from "../actions/userInfo";
+import fetchUserInfo from "../actions/user/userInfo";
 import SignOutForm from "@/components/auth/LogoutForm";
 import UserGreet from "@/components/user/UserGreet";
 

@@ -1,11 +1,12 @@
 'use client'
 
 import { IUserInfo } from "../user/UserInfo";
-import { IRole } from "@/actions/roleList";
+import { IRole } from "@/actions/admin/roleList";
 import RoleSelector from '../auth/RoleSelector';
 import { useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
-import UpdateRoleForm from '@/actions/updateRole';
+import UpdateRoleForm from '@/actions/user/updateRole';
+import { IBuildingInfo } from "@/app/admin/updaterole/[userId]/page";
 
 const SubmitRoleUpdate = () => {
     const { pending } = useFormStatus()
@@ -19,7 +20,7 @@ const SubmitRoleUpdate = () => {
 export default function UpdateRole({roles, user, lockerBuildingList} : {
     roles: IRole[],
     user: IUserInfo,
-    lockerBuildingList: string[]
+    lockerBuildingList: IBuildingInfo[]
 }) {
     // 역할을 수정하는 form 구현
     const [updateRoleState, updateRoleAction] = useFormState(UpdateRoleForm, '')
@@ -39,7 +40,7 @@ export default function UpdateRole({roles, user, lockerBuildingList} : {
                                 <optgroup>
                                     {
                                         lockerBuildingList.map((building) => (
-                                            <option key={building} value={building}>{building}</option>
+                                            <option key={building.buildingNumber} value={building.buildingNumber}>{building.buildingName}</option>
                                         ))
                                     }
                                 </optgroup>

@@ -1,6 +1,6 @@
 'use client'
 
-import signOut, { fetchSignOut } from "@/actions/signout"
+import signOut, { fetchSignOut } from "@/actions/auth/signout"
 import { useFormState } from "react-dom"
 
 const initialState = {

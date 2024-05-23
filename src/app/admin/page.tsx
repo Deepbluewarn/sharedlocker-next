@@ -1,6 +1,6 @@
 // 관리자 페이지 최초 진입 지점.
 
-import { fetchAdmin } from "@/actions/getAdmin";
+import { fetchAdmin } from "@/actions/admin/getAdmin";
 import Link from "next/link";
 
 export default async function AdminPage() {

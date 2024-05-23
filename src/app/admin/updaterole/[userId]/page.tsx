@@ -1,7 +1,7 @@
-import { fetchAdmin } from "@/actions/getAdmin";
-import { fetchBuildingList } from "@/actions/getBuildingList";
-import { IRole, fetchRoleList } from "@/actions/roleList";
-import fetchUserInfoByUserId from "@/actions/userInfoByUserId";
+import { fetchAdmin } from "@/actions/admin/getAdmin";
+import { fetchBuildingList } from "@/actions/locker/getBuildingList";
+import { IRole, fetchRoleList } from "@/actions/admin/roleList";
+import fetchUserInfoByUserId from "@/actions/admin/userInfoByUserId";
 import UpdateRole from "@/components/admin/UpdateRole";
 import UserInfo from "@/components/user/UserInfo";
 

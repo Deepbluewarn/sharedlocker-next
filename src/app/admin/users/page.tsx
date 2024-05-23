@@ -1,6 +1,6 @@
 'use client'
 
-import { userListByUserId } from "@/actions/userListByUserId"
+import { userListByUserId } from "@/actions/user/userListByUserId"
 import UserInfo from "@/components/user/UserInfo"
 import Link from "next/link"
 import { useFormState } from "react-dom"

@@ -1,4 +1,4 @@
-import { fetchUserListByUserId } from "@/actions/userListByUserId"
+import { fetchUserListByUserId } from "@/actions/user/userListByUserId"
 import UserInfo from "../user/UserInfo"
 
 export default async function UserListByUserId({ userId } : {userId: string}) {
