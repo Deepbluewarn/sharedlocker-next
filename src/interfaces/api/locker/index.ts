@@ -29,7 +29,7 @@ export interface ILockerDetail {
     shareRequestedUsers: IUserInfo[]
 }
 
-export interface ILockerInfoList {
+export interface ILockerInfo {
     lockerNumber: number
     status: string
 }
