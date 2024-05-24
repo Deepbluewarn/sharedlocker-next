@@ -6,8 +6,7 @@ import RoleSelector from '../auth/RoleSelector';
 import { useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import UpdateRoleForm from '@/actions/user/updateRole';
-import { IBuildingInfo } from "@/app/admin/updaterole/[userId]/page";
-
+import { IBuildingInfo } from "@/interfaces/api/locker";
 
 const SubmitRoleUpdate = () => {
     const { pending } = useFormStatus()
