@@ -1,5 +1,5 @@
 import styles from '@/styles/user/userInfo.module.css'
-import { IUserInfo } from './UserInfo'
+import { IUserInfo } from '@/interfaces/api/user'
 
 export default function UserGreet(props: {userInfo: IUserInfo}) {
     const userInfo = props.userInfo

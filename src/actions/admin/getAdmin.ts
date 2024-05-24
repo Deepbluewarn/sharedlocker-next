@@ -1,11 +1,13 @@
 'use server'
 
 import { cookies } from "next/headers"
+import FetchWrapper from "../fetch-wrapper"
+import IApiResponse from "@/interfaces/api"
 
-export async function fetchAdmin() {
+export async function fetchAdmin(): Promise<IApiResponse<string, null>> {
     const cookieStore = cookies()
 
-    const res = await fetch(`${process.env.API_BASE_URL}/api/admin`, {
+    const res = await FetchWrapper(`${process.env.API_BASE_URL}/api/admin`, {
         method: 'POST',
         credentials: 'include',
         headers: {

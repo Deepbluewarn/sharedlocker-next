@@ -1,9 +1,11 @@
 'use server'
 
 import { redirect } from "next/navigation"
+import FetchWrapper from "../fetch-wrapper"
+import IApiResponse from "@/interfaces/api"
 
-async function fetchSignUp(formData: FormData) {
-    return await fetch(`${process.env.API_BASE_URL}/auth/register`, {
+async function fetchSignUp(formData: FormData): Promise<IApiResponse<string, null>> {
+    return await FetchWrapper(`${process.env.API_BASE_URL}/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -18,20 +20,19 @@ async function fetchSignUp(formData: FormData) {
 }
 
 export default async function signUp(prevState: any, formData: FormData) {
-    let response = null
     let message = ''
 
     try {
-        response = await fetchSignUp(formData)
+        const response = await fetchSignUp(formData)
+
+        if (response.success) {
+            message = response.message
+        }
     } catch (error) {
         message = '서버 에러'
     }
 
-    if (response.success) {
-        redirect('/')
-    } else {
-        message = response.message
-    }
+    redirect('/')
 
     return { message }
 }

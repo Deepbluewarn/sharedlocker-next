@@ -1,7 +1,9 @@
 'use server'
 
+import FetchWrapper from "../fetch-wrapper"
+
 async function fetchUpdateLockerInfo(formData: FormData) {
-    return await fetch(`${process.env.API_BASE_URL}/api/update-locker`, {
+    return await FetchWrapper(`${process.env.API_BASE_URL}/api/update-locker`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -11,7 +13,7 @@ async function fetchUpdateLockerInfo(formData: FormData) {
             floor: formData.get('floor'),
             lockerNumber: formData.get('lockerNumber'),
         }),
-    }).then((res) => res.json())
+    }).then(res => res.json())
 }
 
 export default async function updateLockerInfoAction(prevState: string, formData: FormData) {

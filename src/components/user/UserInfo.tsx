@@ -1,12 +1,5 @@
+import { IUserInfo } from '@/interfaces/api/user';
 import styles from '@/styles/admin/searchedUser.module.css';
-
-export interface IUserInfo {
-    userId: string,
-    nickname: string,
-    email: string,
-    role: string,
-    createdAt: string,
-}
 
 export default function UserInfo(props: {user: IUserInfo}) {
     const user = props.user

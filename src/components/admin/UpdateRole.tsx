@@ -1,12 +1,13 @@
 'use client'
 
-import { IUserInfo } from "../user/UserInfo";
-import { IRole } from "@/actions/admin/roleList";
+import { IUserInfo } from "@/interfaces/api/user";
+import { IRole } from '@/interfaces/api/admin';
 import RoleSelector from '../auth/RoleSelector';
 import { useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import UpdateRoleForm from '@/actions/user/updateRole';
 import { IBuildingInfo } from "@/app/admin/updaterole/[userId]/page";
+
 
 const SubmitRoleUpdate = () => {
     const { pending } = useFormStatus()

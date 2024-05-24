@@ -2,11 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import FetchWrapper from "../fetch-wrapper";
+import IApiResponse from "@/interfaces/api";
 
-export async function fetchUpdateRole(userId: string, role: string, assignedLockerBuilding: string) {
+export async function fetchUpdateRole(userId: string, role: string, assignedLockerBuilding: string): Promise<IApiResponse<string, null>> {
     const cookieStore = cookies()
 
-    const res = await fetch(`${process.env.API_BASE_URL}/api/user/role`, {
+    const res = await FetchWrapper(`${process.env.API_BASE_URL}/api/user/role`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${cookieStore.get(process.env.ACCESS_TOKEN_COOKIE_NAME!)?.value}`,

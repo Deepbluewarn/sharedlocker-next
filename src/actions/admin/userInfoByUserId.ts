@@ -1,11 +1,14 @@
 'use server'
 
 import { cookies } from "next/headers"
+import FetchWrapper from "../fetch-wrapper";
+import IApiResponse from "@/interfaces/api";
+import { IUserInfo } from "@/interfaces/api/user";
 
-export default async function fetchUserInfoByUserId(userId: string) {
+export default async function fetchUserInfoByUserId(userId: string): Promise<IApiResponse<string, IUserInfo>> {
     const cookieStore = cookies()
     
-    const fetch_res = await fetch(`${process.env.API_BASE_URL}/api/admin/user?userId=${userId}`, {
+    const fetch_res = await FetchWrapper(`${process.env.API_BASE_URL}/api/admin/user?userId=${userId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${cookieStore.get(process.env.ACCESS_TOKEN_COOKIE_NAME!)?.value}`,

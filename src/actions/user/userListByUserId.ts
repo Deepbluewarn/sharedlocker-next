@@ -1,11 +1,14 @@
 'use server'
 
 import { cookies } from "next/headers";
+import FetchWrapper from "../fetch-wrapper";
+import IApiResponse from "@/interfaces/api";
+import { IUserInfo } from "@/interfaces/api/user";
 
-export async function fetchUserListByUserId(userId: string) {
+export async function fetchUserListByUserId(userId: string): Promise<IApiResponse<string, IUserInfo[]>> {
     const cookieStore = cookies()
 
-    const res = await fetch(`${process.env.API_BASE_URL}/api/users`, {
+    const res = await FetchWrapper(`${process.env.API_BASE_URL}/api/users`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${cookieStore.get(process.env.ACCESS_TOKEN_COOKIE_NAME!)?.value}`,
@@ -26,7 +29,7 @@ export async function userListByUserId(prevState: {userList: any[]}, formData: F
         return prevState
     }
 
-    prevState.userList = fetch_res.message
+    prevState.userList = fetch_res.value
 
     return prevState
 }

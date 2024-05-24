@@ -3,11 +3,14 @@
 import cookie from 'cookie'
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
+import FetchWrapper from '../fetch-wrapper'
+import IApiResponse from '@/interfaces/api'
+import { IToken } from '@/interfaces/api/auth'
 
-async function fetchSignIn(formData: FormData) {
+async function fetchSignIn(formData: FormData): Promise<IApiResponse<string, IToken>> {
     const cookieStore = cookies()
     
-    return await fetch(`${process.env.API_BASE_URL}/auth/login`, {
+    return await FetchWrapper(`${process.env.API_BASE_URL}/auth/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -35,20 +38,20 @@ async function fetchSignIn(formData: FormData) {
 }
 
 export default async function signIn(prevState: any, formData: FormData) {
-    let response = null
     let message = ''
 
     try {
-        response = await fetchSignIn(formData)
+        const response = await fetchSignIn(formData)
+
+        if (!response.success) {
+            message = response.message
+        }
     } catch (error) {
+        console.log('signIn action error: ', error)
         message = '서버 에러'
     }
 
-    if (response.success) {
-        redirect('/')
-    } else {
-        message = response.message
-    }
-
+    redirect('/')
+    
     return { message }
 }
