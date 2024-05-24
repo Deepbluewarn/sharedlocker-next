@@ -20,7 +20,7 @@ export default async function Home() {
 
         <Link href='/admin'>관리자 페이지</Link>
 
-        <UserGreet userInfo={user.message}/>
+        <UserGreet userInfo={user.value}/>
       </>
     )
   } else {
