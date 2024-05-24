@@ -1,9 +1,10 @@
 import { fetchAdmin } from "@/actions/admin/getAdmin";
 import { fetchBuildingList } from "@/actions/locker/getBuildingList";
-import { IRole, fetchRoleList } from "@/actions/admin/roleList";
+import { fetchRoleList } from "@/actions/admin/roleList";
 import fetchUserInfoByUserId from "@/actions/admin/userInfoByUserId";
 import UpdateRole from "@/components/admin/UpdateRole";
 import UserInfo from "@/components/user/UserInfo";
+import { IBuildingInfo } from "@/interfaces/api/locker";
 
 export default async function UpdateRolePage({params: {userId}}: {params: {userId: string}}) {
     // 운영 관리자 권한 확인
@@ -14,15 +15,15 @@ export default async function UpdateRolePage({params: {userId}}: {params: {userI
     }
 
     const roles_res = await fetchRoleList()
-    const roles = roles_res.message as IRole[]
+    const roles = roles_res.value
     
     const user_res = await fetchUserInfoByUserId(userId);
-    const user = user_res.message
+    const user = user_res.value
 
     const building_res = await fetchBuildingList()
 
     console.log(building_res)
-    const buildings = building_res.value
+    const buildings: IBuildingInfo[] = building_res.value
 
     return (
         <div>
