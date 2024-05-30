@@ -47,3 +47,13 @@ export interface IAssignedLocker {
         status: string
     }
 }
+
+export interface ILockerStructure {
+    buildingName: string
+    buildingNumber: number
+    floorList: number[]
+    lockerList: {
+        floor: number,
+        list: number[]
+    }[]
+}
