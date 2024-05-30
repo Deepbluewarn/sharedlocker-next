@@ -2,7 +2,6 @@
 
 import cookie from 'cookie'
 import { cookies } from "next/headers"
-import { redirect } from "next/navigation"
 import FetchWrapper from '../fetch-wrapper'
 import IApiResponse from '@/interfaces/api'
 import { IToken } from '@/interfaces/api/auth'
@@ -37,21 +36,14 @@ async function fetchSignIn(formData: FormData): Promise<IApiResponse<string, ITo
     })
 }
 
-export default async function signIn(prevState: any, formData: FormData) {
-    let message = ''
+export default async function signIn(prevState: IApiResponse<string, IToken> | null, formData: FormData) {
+    let response = null;
 
     try {
-        const response = await fetchSignIn(formData)
-
-        if (!response.success) {
-            message = response.message
-        }
+        response = await fetchSignIn(formData)
     } catch (error) {
         console.log('signIn action error: ', error)
-        message = '서버 에러'
     }
 
-    redirect('/')
-    
-    return { message }
+    return response;
 }

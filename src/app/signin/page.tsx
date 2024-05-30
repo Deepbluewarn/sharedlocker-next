@@ -1,14 +1,22 @@
 'use client'
 
+import { useEffect } from "react"
 import signIn from "../../actions/auth/signIn"
 import { useFormState } from "react-dom"
-
-const initialState = {
-    message: '',
-}
+import { useRouter } from "next/navigation"
 
 export default function SignUp() {
-    const [state, formAction] = useFormState(signIn, initialState)
+    const [state, formAction] = useFormState(signIn, null)
+    const router = useRouter();
+
+    useEffect(() => {
+        if (state) {
+            alert(state.message)
+            if (state.success) {
+                router.push('/')
+            }
+        }
+    }, [state])
     
     return (
         <>
@@ -19,8 +27,6 @@ export default function SignUp() {
                 <input type="password" name='password' placeholder="비밀번호" />
                 <button>로그인</button>
             </form>
-
-            <p>{state.message}</p>
         </>
     )
 }
