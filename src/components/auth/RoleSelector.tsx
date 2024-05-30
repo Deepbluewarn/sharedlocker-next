@@ -1,4 +1,4 @@
-import { IRole } from "@/actions/admin/roleList";
+import { IRole } from "@/interfaces/api/admin";
 import { SetStateAction } from "react";
 
 export default function RoleSelector({ roles, selectedRole, setSelectedRole }: {
