@@ -1,5 +1,6 @@
 'use client' // Error components must be Client Components
  
+import Link from 'next/link'
 import { useEffect } from 'react'
  
 export default function Error({
@@ -16,15 +17,19 @@ export default function Error({
  
   return (
     <div>
-      <h2>Something went wrong!</h2>
+      <h2>오류가 발생했어요!</h2>
+      <p>{error.message}</p>
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment
           () => reset()
         }
       >
-        Try again
+        돌아가기
       </button>
+      <Link href='/'>
+        메인 페이지
+      </Link>
     </div>
   )
 }
