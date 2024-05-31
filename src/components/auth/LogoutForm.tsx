@@ -1,22 +1,16 @@
 'use client'
 
-import signOut, { fetchSignOut } from "@/actions/auth/signout"
+import signOut from "@/actions/auth/signout"
 import { useFormState } from "react-dom"
 
-const initialState = {
-    message: '',
-}
-
 export default function SignOutForm() {
-    const [state, formAction] = useFormState(signOut, initialState)
+    const [state, formAction] = useFormState(signOut, null)
     
     return (
         <>
             <form action={formAction}>
                 <button>로그아웃</button>
             </form>
-
-            <p>{state.message}</p>
         </>
     )
 }

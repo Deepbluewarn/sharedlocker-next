@@ -3,10 +3,11 @@
 import { IUserInfo } from "@/interfaces/api/user";
 import { IRole } from '@/interfaces/api/admin';
 import RoleSelector from '../auth/RoleSelector';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import UpdateRoleForm from '@/actions/user/updateRole';
 import { IBuildingInfo } from "@/interfaces/api/locker";
+import { redirect } from "next/navigation";
 
 const SubmitRoleUpdate = () => {
     const { pending } = useFormStatus()
@@ -23,8 +24,15 @@ export default function UpdateRole({roles, user, lockerBuildingList} : {
     lockerBuildingList: IBuildingInfo[]
 }) {
     // 역할을 수정하는 form 구현
-    const [updateRoleState, updateRoleAction] = useFormState(UpdateRoleForm, '')
+    const [updateRoleState, updateRoleAction] = useFormState(UpdateRoleForm, null)
     const [selectedRole, setSelectedRole] = useState(user.role)
+
+    useEffect(() => {
+        if (updateRoleState?.success) {
+            alert(updateRoleState?.message)
+            redirect('/admin')
+        }
+    }, [updateRoleState])
 
     return (
         <>
@@ -49,7 +57,6 @@ export default function UpdateRole({roles, user, lockerBuildingList} : {
                         </fieldset>
                     ) : null
                 }
-                {updateRoleState}
                 <SubmitRoleUpdate />
             </form>
         </>

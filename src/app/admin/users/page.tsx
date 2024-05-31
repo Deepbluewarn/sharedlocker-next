@@ -5,14 +5,11 @@ import UserInfo from "@/components/user/UserInfo"
 import Link from "next/link"
 import { useFormState } from "react-dom"
 
-const initialUserState = {
-    userList: []
-}
 export default function AdminUserPage() {
     const [userState, userFormAction] = 
-        useFormState(userListByUserId, initialUserState)
+        useFormState(userListByUserId, null)
 
-    const userList = userState.userList
+    const userList = userState?.value
 
     return (
         <>

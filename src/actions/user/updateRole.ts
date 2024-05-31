@@ -1,6 +1,5 @@
 'use server'
 
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import FetchWrapper from "../fetch-wrapper";
 import IApiResponse from "@/interfaces/api";
@@ -20,7 +19,7 @@ export async function fetchUpdateRole(userId: string, role: string, assignedLock
     return res.json()
 }
 
-export default async function UpdateRoleForm(prevState: string, formData: FormData) {
+export default async function UpdateRoleForm(prevState: IApiResponse<string, null> | null, formData: FormData) {
     const userId = formData.get('userId') as string
     const selectedRole = formData.get('selectedRole') as string
     const assignedLockerBuilding = formData.get('assignedLockerBuilding') as string
@@ -28,9 +27,5 @@ export default async function UpdateRoleForm(prevState: string, formData: FormDa
 
     const fetch_res = await fetchUpdateRole(userId, selectedRole, assignedLockerBuilding)
 
-    console.log('UpdateRoleForm fetch_res Response:', fetch_res)
-
-    revalidatePath('/')
-
-    return fetch_res.message
+    return fetch_res
 }

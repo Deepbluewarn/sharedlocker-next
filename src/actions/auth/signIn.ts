@@ -42,7 +42,7 @@ export default async function signIn(prevState: IApiResponse<string, IToken> | n
     try {
         response = await fetchSignIn(formData)
     } catch (error) {
-        console.log('signIn action error: ', error)
+        throw error;
     }
 
     return response;

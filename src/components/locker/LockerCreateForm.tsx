@@ -8,7 +8,7 @@ import { useFormState } from "react-dom"
 export default function LockerCreateForm({ lockerStructure }: {
     lockerStructure: ILockerStructure[]
 }) {
-    const [state, formAction] = useFormState(createLockerAction, '');
+    const [state, formAction] = useFormState(createLockerAction, null);
     const [selectedBuildingName, setSelectedBuildingName] = useState<string>('');
     const [selectedBuildingNumber, setSelectedBuildingNumber] = useState<string>('');
     const [selectedFloor, setSelectedFloor] = useState<string>('');
@@ -69,7 +69,7 @@ export default function LockerCreateForm({ lockerStructure }: {
             <button disabled={submitValidation ? false : true}>
                 생성
             </button>
-            <p>{state}</p>
+            <p>{state?.message}</p>
         </form>
     );
 }

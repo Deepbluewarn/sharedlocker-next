@@ -11,7 +11,7 @@ export async function fetchCreateLocker(formData: FormData): Promise<IApiRespons
     const floorNumber = Number(formData.get('floorNumber'))
     const lockerNumber = Number(formData.get('lockerNumber'))
 
-    const res = await FetchWrapper(`${process.env.API_BASE_URL}/api/locker/create`, {
+    return await FetchWrapper(`${process.env.API_BASE_URL}/api/locker/create`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${cookieStore.get(process.env.ACCESS_TOKEN_COOKIE_NAME!)?.value}`,
@@ -20,12 +20,11 @@ export async function fetchCreateLocker(formData: FormData): Promise<IApiRespons
         body: JSON.stringify({
             buildingNumber, floorNumber, lockerNumber
         }),
-    });
-    return res.json();
+    }).then(res => res.json())
 }
 
-export default async function createLockerAction(prevState: string, formData: FormData) {
+export default async function createLockerAction(prevState: IApiResponse<string, null> | null, formData: FormData) {
     const fetch_res = await fetchCreateLocker(formData)
 
-    return fetch_res.message
+    return fetch_res
 }

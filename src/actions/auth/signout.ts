@@ -1,7 +1,6 @@
 'use server'
 
 import { cookies } from "next/headers"
-import { redirect } from "next/navigation";
 import FetchWrapper from "../fetch-wrapper";
 import IApiResponse from "@/interfaces/api";
 
@@ -24,20 +23,14 @@ export async function fetchSignOut(): Promise<IApiResponse<string, null>> {
     })
 }
 
-export default async function signOut(prevState: any, formData: FormData) {
-    let message = ''
+export default async function signOut(prevState: IApiResponse<string, null> | null, formData: FormData) {
+    let response = null
 
     try {
-        const response = await fetchSignOut()
-
-        if (!response.success) {
-            message = response.message
-        }
+        response = await fetchSignOut()
     } catch (error) {
-        message = '서버 에러'
+        throw error;
     }
 
-    redirect('/')
-
-    return { message }
+    return response;
 }

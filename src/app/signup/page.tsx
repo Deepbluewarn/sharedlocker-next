@@ -3,12 +3,8 @@
 import signUp from "../../actions/auth/signUp"
 import { useFormState } from "react-dom"
 
-const initialState = {
-    message: '',
-}
-
 export default function SignUp() {
-    const [state, formAction] = useFormState(signUp, initialState)
+    const [state, formAction] = useFormState(signUp, null)
     
     return (
         <>
@@ -22,8 +18,6 @@ export default function SignUp() {
                 <input type="text" name='email' placeholder="이메일" />
 
                 <button>회원가입</button>
-
-                <p>{state.message}</p>
             </form>
         </>
     )

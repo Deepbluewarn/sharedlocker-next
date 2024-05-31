@@ -19,20 +19,14 @@ async function fetchSignUp(formData: FormData): Promise<IApiResponse<string, nul
     }).then((res) => res.json())
 }
 
-export default async function signUp(prevState: any, formData: FormData) {
-    let message = ''
+export default async function signUp(prevState: IApiResponse<string, null> | null, formData: FormData) {
+    let response = null;
 
     try {
-        const response = await fetchSignUp(formData)
-
-        if (response.success) {
-            message = response.message
-        }
+        response = await fetchSignUp(formData)
     } catch (error) {
-        message = '서버 에러'
+        throw error;
     }
 
-    redirect('/')
-
-    return { message }
+    return response;
 }
