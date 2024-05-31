@@ -10,8 +10,8 @@ export default async function UpdateRolePage({params: {userId}}: {params: {userI
     // 운영 관리자 권한 확인
     const admin = await fetchAdmin();
 
-    if (!admin.success) {
-        return <p>관리자 권한이 없습니다.</p>
+    if (!admin || !admin.success) {
+        return <p>{admin.message}</p>
     }
 
     const roles_res = await fetchRoleList()
