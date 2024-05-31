@@ -1,15 +1,14 @@
-export default async function FetchWrapper(url: string, options: RequestInit) {
-    try {
-        const res = await fetch(url, options)
+export default async function FetchWrapper(url: string, options: RequestInit): Promise<Response> {
+    const res = await fetch(url, options)
 
-        if(res.status < 500) {
-            return res // 사용자가 원하는 형태로 변환하지 않고 그대로 반환
-        } else {
-            const error_res = await res.json()
+    if (!res.ok) {
+        const error_res = await res.json()
+        const error = new Error(error_res.message)
 
-            throw new Error(error_res.message)
+        if (res.status >= 400) {
+            throw error
         }
-    } catch (error) {
-        throw error
     }
+
+    return res;
 }
