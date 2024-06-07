@@ -6,6 +6,10 @@ import { IconAt, IconCalendarDue } from '@tabler/icons-react';
 export default function UserInfo(props: { user: IUserInfo }) {
     const user = props.user
 
+    if (!user) {
+        return null
+    }
+
     return (
         <div>
             <Group wrap="nowrap">
@@ -15,7 +19,7 @@ export default function UserInfo(props: { user: IUserInfo }) {
                 />
                 <div>
                     <Text fz="xs" tt="uppercase" fw={700} c="dimmed">
-                        {user.admin.role}
+                        {user.admin?.role}
                     </Text>
 
                     <Text fz="lg" fw={500} className={classes.name}>

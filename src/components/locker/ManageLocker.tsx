@@ -39,7 +39,7 @@ export default function ManageLocker({ lockerStructure }: {
                 {
                     !(lockerDeleted) && lookupState?.value ? (
                         <>
-                            <LockerDetailGrid />
+                            <LockerDetailGrid lockerDetails={lookupState.value}/>
                             <form action={deleteFormAction}>
                                 <input type='hidden' name='buildingNumber' value={lookupState.value[0].buildingNumber} />
                                 <input type='hidden' name='floorNumber' value={lookupState.value[0].floorNumber} />
