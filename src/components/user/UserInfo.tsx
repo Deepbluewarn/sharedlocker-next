@@ -1,15 +1,42 @@
 import { IUserInfo } from '@/interfaces/api/user';
-import styles from '@/styles/admin/searchedUser.module.css';
+import classes from '@/styles/user/userInfo.module.css';
+import { Avatar, Group, Text } from '@mantine/core';
+import { IconAt, IconCalendarDue } from '@tabler/icons-react';
 
-export default function UserInfo(props: {user: IUserInfo}) {
+export default function UserInfo(props: { user: IUserInfo }) {
     const user = props.user
 
     return (
-        <div className={styles.container}>
-            <h3>{user.nickname} ({user.userId})</h3>
-            <p>{user.email}</p>
-            <p>{user.role}</p>
-            <p>{user.createdAt}</p>
+        <div>
+            <Group wrap="nowrap">
+                <Avatar
+                    size={94}
+                    radius="md"
+                />
+                <div>
+                    <Text fz="xs" tt="uppercase" fw={700} c="dimmed">
+                        {user.admin.role}
+                    </Text>
+
+                    <Text fz="lg" fw={500} className={classes.name}>
+                        {user.nickname}
+                    </Text>
+
+                    <Group wrap="nowrap" gap={10} mt={3}>
+                        <IconAt stroke={1.5} size="1rem" className={classes.icon} />
+                        <Text fz="xs" c="dimmed">
+                            {user.email}
+                        </Text>
+                    </Group>
+
+                    <Group wrap="nowrap" gap={10} mt={5}>
+                        <IconCalendarDue stroke={1.5} size="1rem" className={classes.icon} />
+                        <Text fz="xs" c="dimmed">
+                            {user.createdAt}
+                        </Text>
+                    </Group>
+                </div>
+            </Group>
         </div>
     )
 }

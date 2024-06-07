@@ -4,9 +4,10 @@ import getLockerDetailAction from "@/actions/locker/getLockerDetail";
 import { ILockerStructure } from "@/interfaces/api/locker";
 import { useFormState } from "react-dom";
 import LockerSelector from "./LockerSelector";
-import LockerDetail from "./LockerDetail";
 import deleteLockerAction from "@/actions/locker/deleteLocker";
 import { useEffect, useState } from "react";
+import { Button, Divider } from "@mantine/core";
+import { LockerDetailGrid } from "./LockerDetailGrid";
 
 export default function ManageLocker({ lockerStructure }: {
     lockerStructure: ILockerStructure[]
@@ -29,22 +30,21 @@ export default function ManageLocker({ lockerStructure }: {
     && lookupState?.value[0].lockerNumber === deleteState?.value.lockerNumber
 
     return (
-        <div>
-            <h1>Manage Locker</h1>
-
             <div key={JSON.stringify(lockerStructureState)}>
                 <form action={lookupFormAction}>
                     <LockerSelector lockerStructure={lockerStructureState} />
                 </form>
+
+                <Divider />
                 {
                     !(lockerDeleted) && lookupState?.value ? (
                         <>
-                            <LockerDetail lockerDetail={lookupState.value} />
+                            <LockerDetailGrid />
                             <form action={deleteFormAction}>
                                 <input type='hidden' name='buildingNumber' value={lookupState.value[0].buildingNumber} />
                                 <input type='hidden' name='floorNumber' value={lookupState.value[0].floorNumber} />
                                 <input type='hidden' name='lockerNumber' value={lookupState.value[0].lockerNumber} />
-                                <button type="submit">보관함 삭제</button>
+                                <Button type="submit">보관함 삭제</Button>
                             </form>
                         </>
                     ) : (
@@ -52,6 +52,5 @@ export default function ManageLocker({ lockerStructure }: {
                     )
                 }
             </div>
-        </div>
     )
 }

@@ -2,7 +2,9 @@
 
 import createLockerAction from "@/actions/locker/createLocker"
 import { ILockerStructure } from "@/interfaces/api/locker";
-import { useCallback, useState } from "react";
+import { Button, NativeSelect, NumberInput, Text } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
+import { useCallback, useEffect, useState } from "react";
 import { useFormState } from "react-dom"
 
 export default function LockerCreateForm({ lockerStructure }: {
@@ -13,6 +15,15 @@ export default function LockerCreateForm({ lockerStructure }: {
     const [selectedBuildingNumber, setSelectedBuildingNumber] = useState<string>('');
     const [selectedFloor, setSelectedFloor] = useState<string>('');
     const [selectedLocker, setSelectedLocker] = useState<string>('');
+
+    useEffect(() => {
+        if (state?.success) {
+            notifications.show({
+                title: '보관함 생성 완료',
+                message: '보관함이 성공적으로 생성되었습니다',
+            })
+        }
+    }, [state])
 
     const handleBuildingChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedBuildingNumber(event.target.value);
@@ -49,27 +60,29 @@ export default function LockerCreateForm({ lockerStructure }: {
     const submitValidation = selectedBuildingNumber && selectedFloor
 
     return (
-        <form action={formAction}>
-            <select name='buildingNumber' value={selectedBuildingNumber} onChange={handleBuildingChange}>
-                <option>건물 선택</option>
-                {buildingOptions}
-            </select>
+        <>
+            <Text>보관함 추가</Text>
+            <form action={formAction}>
+                <NativeSelect name='buildingNumber' value={selectedBuildingNumber} label='건물을 선택하세요' onChange={handleBuildingChange}>
+                    <option>건물 선택</option>
+                    {buildingOptions}
+                </NativeSelect>
 
-            {selectedBuildingNumber && (
-                <select name='floorNumber' value={selectedFloor} onChange={handleFloorChange}>
-                    <option>층 선택</option>
-                    {floorOptions}
-                </select>
-            )}
+                {selectedBuildingNumber && (
+                    <NativeSelect name='floorNumber' value={selectedFloor} label='층을 선택하세요' onChange={handleFloorChange}>
+                        <option>층 선택</option>
+                        {floorOptions}
+                    </NativeSelect>
+                )}
 
-            {selectedFloor && (
-                <input name='lockerNumber' type='number' placeholder="보관함 번호를 입력하세요"></input>
-            )}
+                {selectedFloor && (
+                    <NumberInput name='lockerNumber' label='보관함 번호를 입력하세요' placeholder="보관함 번호"></NumberInput>
+                )}
 
-            <button disabled={submitValidation ? false : true}>
-                생성
-            </button>
-            <p>{state?.message}</p>
-        </form>
+                <Button type='submit' disabled={submitValidation ? false : true}>
+                    생성
+                </Button>
+            </form>
+        </>
     );
 }

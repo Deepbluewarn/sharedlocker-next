@@ -1,18 +1,23 @@
 import { IRole } from "@/interfaces/api/admin";
+import { NativeSelect, Select } from "@mantine/core";
 import { SetStateAction } from "react";
 
 export default function RoleSelector({ roles, selectedRole, setSelectedRole }: {
     roles: IRole[],
-    selectedRole: string,
-    setSelectedRole: React.Dispatch<SetStateAction<string>>
+    selectedRole: string | null,
+    setSelectedRole: React.Dispatch<SetStateAction<string | null>>
 }) {
     return (
-        <select name='selectedRole' onChange={(e) => setSelectedRole(e.target.value)}>
-            {
+        <NativeSelect 
+            name='selectedRole' 
+            label='변경하고자 하는 역할을 선택하세요'
+            data={
                 roles.map((role) => (
-                    <option key={role.role} value={role.role}>{role.name}</option>
+                    {label: role.name, value: role.role}
                 ))
             }
-        </select>
+            defaultValue={selectedRole || ''}
+            onChange={(event) => setSelectedRole(event.currentTarget.value)}
+        />
     )
 }

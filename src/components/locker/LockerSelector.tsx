@@ -1,6 +1,7 @@
 'use client'
 
 import { ILockerStructure } from "@/interfaces/api/locker";
+import { Button, NativeSelect } from "@mantine/core";
 import { useCallback, useState } from "react";
 
 export default function LockerSelector({ lockerStructure }: {
@@ -55,28 +56,28 @@ export default function LockerSelector({ lockerStructure }: {
 
     return (
         <>
-            <select name='buildingNumber' value={selectedBuildingNumber} onChange={handleBuildingChange}>
+            <NativeSelect name='buildingNumber' value={selectedBuildingNumber} label='건물을 선택하세요' onChange={handleBuildingChange}>
                 <option>건물 선택</option>
                 {buildingOptions}
-            </select>
+            </NativeSelect>
 
             {selectedBuildingNumber && (
-                <select name='floorNumber' value={selectedFloor} onChange={handleFloorChange}>
+                <NativeSelect name='floorNumber' value={selectedFloor} label='층을 선택하세요' onChange={handleFloorChange}>
                     <option>층 선택</option>
                     {floorOptions}
-                </select>
+                </NativeSelect>
             )}
 
             {selectedFloor && (
-                <select name='lockerNumber' value={selectedLocker} onChange={handleLockerChange}>
+                <NativeSelect name='lockerNumber' value={selectedLocker} label='보관함을 선택하세요' onChange={handleLockerChange}>
                     <option>보관함 선택</option>
                     {lockerOptions}
-                </select>
+                </NativeSelect>
             )}
 
-            <button type='submit' disabled={submitValidation ? false : true}>
+            <Button type='submit' disabled={submitValidation ? false : true}>
                 조회
-            </button>
+            </Button>
         </>
     );
 }

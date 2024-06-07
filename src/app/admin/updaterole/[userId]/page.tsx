@@ -27,9 +27,6 @@ export default async function UpdateRolePage({params: {userId}}: {params: {userI
 
     return (
         <div>
-            <h1>회원 역할 수정</h1>
-            <h4>관리자 역할을 부여하거나 수정할 수 있습니다.</h4>
-            <p>userId: {userId}</p>
             <UserInfo user={user}/>
 
             <UpdateRole roles={roles} user={user} lockerBuildingList={buildings}/>
