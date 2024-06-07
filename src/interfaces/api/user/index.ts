@@ -5,8 +5,9 @@ export interface IUserInfo {
     userId: string,
     nickname: string,
     email: string,
-    role: string,
+    admin: IAdmin,
     createdAt: string,
-    admin?: IAdmin,
-    assignedLocker?: IAssignedLocker[]
+}
+export interface IUserDetailInfo extends IUserInfo{
+    assignedLocker: IAssignedLocker[]
 }

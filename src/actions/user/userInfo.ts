@@ -3,9 +3,9 @@
 import { cookies } from "next/headers"
 import FetchWrapper from "../fetch-wrapper";
 import IApiResponse from "@/interfaces/api";
-import { IUserInfo } from "@/interfaces/api/user";
+import { IUserDetailInfo } from "@/interfaces/api/user";
 
-export default async function fetchUserInfo(): Promise<IApiResponse<string, IUserInfo>> {
+export default async function fetchUserInfo(): Promise<IApiResponse<string, IUserDetailInfo>> {
     const cookieStore = cookies()
     
     return await FetchWrapper(`${process.env.API_BASE_URL}/api/user`, {
