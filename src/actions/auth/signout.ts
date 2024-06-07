@@ -3,6 +3,7 @@
 import { cookies } from "next/headers"
 import FetchWrapper from "../fetch-wrapper";
 import IApiResponse from "@/interfaces/api";
+import { redirect } from "next/navigation";
 
 export async function fetchSignOut(): Promise<IApiResponse<string, null>> {
     const cookieStore = cookies()
@@ -23,14 +24,13 @@ export async function fetchSignOut(): Promise<IApiResponse<string, null>> {
     })
 }
 
-export default async function signOut(prevState: IApiResponse<string, null> | null, formData: FormData) {
-    let response = null
+export default async function signOut(prevState: any, formData: FormData) {
 
     try {
-        response = await fetchSignOut()
+        await fetchSignOut()
     } catch (error) {
         throw error;
     }
 
-    return response;
+    redirect('/')
 }
