@@ -1,6 +1,6 @@
 'use client'
 
-import { AppShell, AppShellHeader, AppShellMain, AppShellNavbar, Burger, Button, Code, Group, NavLink } from "@mantine/core";
+import { AppShell, AppShellHeader, AppShellMain, AppShellNavbar, Burger, Button, Code, Group, NavLink, Text } from "@mantine/core";
 import { Metadata } from "next";
 import React from "react";
 import classes from '@/styles/admin/NavbarSimpleColored.module.css';
@@ -54,10 +54,7 @@ export function AdminAppShell({ children, tokenValidation }: { children: React.R
             <AppShellHeader className={classes.header}>
                 <Group>
                     <Burger opened={opened} onClick={toggle} />
-                    <MantineLogo size={28} inverted style={{ color: 'white' }} />
-                    <Code fw={700} className={classes.version}>
-                        v3.1.2
-                    </Code>
+                    <Text>공유 보관함</Text>
                 </Group>
             </AppShellHeader>
             <AppShellNavbar className={classes.navbar} p="md">

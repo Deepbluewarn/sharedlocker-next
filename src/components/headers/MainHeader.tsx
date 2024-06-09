@@ -1,8 +1,7 @@
 'use client'
 
-import { Container, Group, Box, Button, Avatar } from '@mantine/core';
+import { Container, Group, Box, Button, Avatar, Text } from '@mantine/core';
 import classes from '@/styles/headers/header.module.css';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import Link from 'next/link';
 import SignOutForm from '../auth/LogoutForm';
 import { IUserInfo } from '@/interfaces/api/user';
@@ -15,7 +14,7 @@ export function MainHeader(props: {
   return (
     <header className={classes.header}>
       <Container className={classes.inner}>
-        <MantineLogo size={34} />
+        <Text>공유 보관함</Text>
         <Box>
           <Group visibleFrom="sm">
             {

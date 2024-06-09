@@ -1,6 +1,6 @@
 'use client'
 
-import { Anchor, Group, ActionIcon, rem } from '@mantine/core';
+import { Anchor, Group, ActionIcon, rem, Text } from '@mantine/core';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from '@/styles/footers/footer.module.css';
 
@@ -29,7 +29,7 @@ export function FooterCentered() {
   return (
     <div className={classes.footer}>
       <div className={classes.inner}>
-        <MantineLogo size={28} />
+        <Text>공유 보관함</Text>
 
         <Group className={classes.links}>{items}</Group>
       </div>
