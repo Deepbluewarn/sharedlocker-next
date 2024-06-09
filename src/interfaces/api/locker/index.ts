@@ -1,5 +1,11 @@
 import { IUserInfo } from "../user"
 
+export interface IAccessHistory {
+    userId: string
+    accessTime: string
+    accessType: string
+}
+
 // GET /api/locker/building
 export interface IBuildingInfo {
     buildingName: string
@@ -27,6 +33,7 @@ export interface ILockerDetail {
     claimedByUser: IUserInfo[]
     sharedWithUsers: IUserInfo[]
     shareRequestedUsers: IUserInfo[]
+    accessHistory: IAccessHistory[]
 }
 
 export interface ILockerInfo {

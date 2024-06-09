@@ -1,0 +1,8 @@
+.locker-selector-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-lg);
+}
+.divider {
+    margin: var(--mantine-spacing-lg) 0;
+}

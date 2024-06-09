@@ -8,6 +8,7 @@ import deleteLockerAction from "@/actions/locker/deleteLocker";
 import { useEffect, useState } from "react";
 import { Button, Divider } from "@mantine/core";
 import { LockerDetailGrid } from "./LockerDetailGrid";
+import classes from '@/styles/locker/ManageLocker.module.css';
 
 export default function ManageLocker({ lockerStructure }: {
     lockerStructure: ILockerStructure[]
@@ -31,11 +32,11 @@ export default function ManageLocker({ lockerStructure }: {
 
     return (
             <div key={JSON.stringify(lockerStructureState)}>
-                <form action={lookupFormAction}>
+                <form action={lookupFormAction} className={classes['locker-selector-form']}>
                     <LockerSelector lockerStructure={lockerStructureState} />
                 </form>
 
-                <Divider />
+                <Divider className={classes.divider}/>
                 {
                     !(lockerDeleted) && lookupState?.value ? (
                         <>
