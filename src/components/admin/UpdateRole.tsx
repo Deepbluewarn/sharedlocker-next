@@ -27,7 +27,7 @@ export default function UpdateRole({roles, user, lockerBuildingList} : {
 }) {
     // 역할을 수정하는 form 구현
     const [updateRoleState, updateRoleAction] = useFormState(UpdateRoleForm, null)
-    const [selectedRole, setSelectedRole] = useState<string | null>(user.admin.role)
+    const [selectedRole, setSelectedRole] = useState<string | null>(user.admin ? user.admin.role : null)
 
     useEffect(() => {
         if (updateRoleState?.success) {

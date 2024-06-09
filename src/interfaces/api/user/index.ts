@@ -5,7 +5,7 @@ export interface IUserInfo {
     userId: string,
     nickname: string,
     email: string,
-    admin: IAdmin,
+    admin?: IAdmin,
     createdAt: string,
 }
 export interface IUserDetailInfo extends IUserInfo{

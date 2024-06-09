@@ -43,7 +43,7 @@ export default function AdminUserPage() {
                                 <Table.Td>{user.userId}</Table.Td>
                                 <Table.Td>{user.nickname}</Table.Td>
                                 <Table.Td>{user.email}</Table.Td>
-                                <Table.Td>{user.admin.role}</Table.Td>
+                                <Table.Td>{user.admin?.role}</Table.Td>
                                 <Table.Td>
                                     <Link href={`/admin/updaterole/${user.userId}`}>
                                         회원 상세
