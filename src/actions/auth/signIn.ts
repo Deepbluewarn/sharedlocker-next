@@ -29,7 +29,12 @@ async function fetchSignIn(formData: FormData): Promise<IApiResponse<string, ITo
             const [firstPair, ...rest] = c.split('; ');
             const [key, value] = firstPair.split('=');
             
-            cookieStore.set(key, value, parsedCookie);
+            cookieStore.set(key, value, {
+                httpOnly: true,
+                secure: true,
+                path: '/',
+                sameSite: 'strict',
+            });
         })
 
         return res.json()
