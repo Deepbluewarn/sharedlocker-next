@@ -89,6 +89,10 @@ export function AuthenticationForm(props: PaperProps) {
                 {type}
             </Text>
 
+            <Button component='a' href={`${process.env.API_BASE_URL}/auth/kakao`}>
+                카카오 로그인
+            </Button>
+
             <Divider label="" labelPosition="center" my="lg" />
 
             <form onSubmit={form.onSubmit(() => {action()})} ref={formRef}>
