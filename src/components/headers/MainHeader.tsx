@@ -20,7 +20,7 @@ export function MainHeader(props: {
             {
               props.token ? (
                 <>
-                  <Avatar color="cyan" radius="xl">{props.userInfo?.nickname[0]}</Avatar>
+                  <Avatar color="cyan" radius="xl">{props.userInfo?.nickname}</Avatar>
                   {
                     props.userInfo?.admin ? (
                       <Button component={Link} href='/admin'>관리자 페이지</Button>
