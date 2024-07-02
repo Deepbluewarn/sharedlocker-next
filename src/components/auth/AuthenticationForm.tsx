@@ -89,8 +89,14 @@ export function AuthenticationForm(props: PaperProps) {
                 {type}
             </Text>
 
-            <Button component='a' href={`${process.env.API_BASE_URL}/auth/kakao`}>
+            <Button component='a' href={`/auth/kakao`}>
                 카카오 로그인
+            </Button>
+            <Button component='a' href={`/auth/github`}>
+                Github 로그인
+            </Button>
+            <Button component='a' href={`/auth/google`}>
+                Google 로그인
             </Button>
 
             <Divider label="" labelPosition="center" my="lg" />
