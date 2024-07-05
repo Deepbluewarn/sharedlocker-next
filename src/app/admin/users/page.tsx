@@ -1,14 +1,14 @@
 'use client'
 
-import { userListByUserId } from "@/actions/user/userListByUserId"
 import Link from "next/link"
 import { Button, Divider, Table, TextInput } from "@mantine/core";
 import { useFormState } from "react-dom"
 import classes from '@/styles/admin/user.module.css'
+import userListByQuery from "@/actions/user/queryUserList";
 
 export default function AdminUserPage() {
     const [userState, userFormAction] = 
-        useFormState(userListByUserId, null)
+        useFormState(userListByQuery, null)
 
     const userList = userState?.value
 
@@ -17,9 +17,9 @@ export default function AdminUserPage() {
             <form action={userFormAction} className={classes.userSearchForm}>
                 <TextInput
                     label="회원 검색"
-                    description="회원 아이디를 입력하세요"
-                    placeholder="회원 아이디"
-                    name='userId'
+                    description="회원 아이디 또는 닉네임을 입력하세요"
+                    placeholder="회원 아이디 또는 닉네임"
+                    name='query'
                 />
                 <Button type='submit'>검색</Button>
             </form>
