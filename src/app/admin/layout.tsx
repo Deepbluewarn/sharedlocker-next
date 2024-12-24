@@ -1,9 +1,5 @@
 import { Metadata } from "next";
 import React from "react";
-import {
-    IconUsers,
-    IconBox,
-} from '@tabler/icons-react';
 import Link from "next/link";
 import { checkAuthToken } from "@/utils";
 import { AdminAppShell } from "@/components/appShell/AdminAppShell";
@@ -14,13 +10,8 @@ export const metadata: Metadata = {
     description: "관리자 페이지",
 };
 
-const data = [
-    { link: '/admin/users', label: '회원 관리', icon: IconUsers },
-    { link: '/admin/lockers', label: '보관함 관리', icon: IconBox },
-];
-
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-    const tokenValidation = checkAuthToken();
+    const tokenValidation = await checkAuthToken();
 
     if (!tokenValidation) {
         return (

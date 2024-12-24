@@ -20,7 +20,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const tokenValidation = checkAuthToken();
+  const tokenValidation = await checkAuthToken();
   let userInfo;
 
   if (tokenValidation) {

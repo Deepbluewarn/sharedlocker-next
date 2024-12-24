@@ -1,10 +1,10 @@
-import { fetchUserListByUserId } from "@/actions/user/userListByUserId"
+import { fetchQueryUserList } from "@/actions/user/queryUserList"
 import UserInfo from "../user/UserInfo"
 
 export default async function UserListByUserId({ userId } : {userId: string}) {
     let userListComponent = null
 
-    const userList_res = await fetchUserListByUserId(userId)
+    const userList_res = await fetchQueryUserList(userId)
     const userList = userList_res.message
 
     if (!Array.isArray(userList)) {

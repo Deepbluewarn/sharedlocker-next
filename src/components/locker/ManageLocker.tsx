@@ -45,7 +45,7 @@ export default function ManageLocker({ lockerStructure }: {
                                 <input type='hidden' name='buildingNumber' value={lookupState.value[0].buildingNumber} />
                                 <input type='hidden' name='floorNumber' value={lookupState.value[0].floorNumber} />
                                 <input type='hidden' name='lockerNumber' value={lookupState.value[0].lockerNumber} />
-                                <Button type="submit">보관함 삭제</Button>
+                                <Button type="submit" color="red">보관함 삭제</Button>
                             </form>
                         </>
                     ) : (

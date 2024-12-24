@@ -1,6 +1,6 @@
 'use client' // Error components must be Client Components
  
-import { Button } from '@mantine/core'
+import { Button, Group } from '@mantine/core'
 import Link from 'next/link'
 import { useEffect } from 'react'
  
@@ -19,18 +19,21 @@ export default function Error({
   return (
     <div>
       <h2>관리자 페이지 오류가 발생했어요!</h2>
-      <p>{error.message}</p>
-      <Button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        돌아가기
-      </Button>
-      <Link href='/'>
-        메인 페이지
-      </Link>
+      <p>{error.digest}</p>
+      <Group>
+        <Button
+          onClick={
+            // Attempt to recover by trying to re-render the segment
+            () => reset()
+          }
+        >
+          돌아가기
+        </Button>
+        <Button component={Link} href='/'>
+          메인 페이지
+        </Button>
+      </Group>
+      
     </div>
   )
 }

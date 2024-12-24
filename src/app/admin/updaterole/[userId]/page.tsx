@@ -6,6 +6,7 @@ import UpdateRole from "@/components/admin/UpdateRole";
 import UserInfo from "@/components/user/UserInfo";
 import { IBuildingInfo } from "@/interfaces/api/locker";
 import DeleteUser from "@/components/admin/DeleteUser";
+import { Stack } from "@mantine/core";
 
 export default async function UpdateRolePage({params: {userId}}: {params: {userId: string}}) {
     // 운영 관리자 권한 확인
@@ -27,12 +28,10 @@ export default async function UpdateRolePage({params: {userId}}: {params: {userI
     const buildings: IBuildingInfo[] = building_res.value
 
     return (
-        <div>
+        <Stack>
             <UserInfo user={user}/>
-
             <UpdateRole roles={roles} user={user} lockerBuildingList={buildings}/>
-
-            <DeleteUser user={user}/>
-        </div>
+            <DeleteUser user={user} />
+        </Stack>
     )
 }

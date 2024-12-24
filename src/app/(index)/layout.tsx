@@ -12,7 +12,7 @@ export default async function RootLayout({
   const cookieStore = cookies()
   const accessToken = cookieStore.get(process.env.ACCESS_TOKEN_COOKIE_NAME!)
 
-  const tokenValidation = checkAuthToken();
+  const tokenValidation = await checkAuthToken();
   let userInfo;
 
   if (tokenValidation) {

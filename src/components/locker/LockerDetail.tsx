@@ -12,12 +12,12 @@ export default function LockerDetail({
     const lockerDescription = `${lockerDetail[0].buildingName} (${lockerDetail[0].buildingNumber}번) ${lockerDetail[0].floorNumber}층 ${lockerDetail[0].lockerNumber}번 보관함`
     const claimedUserDescription = claimedByUser.length > 0 ? `보관함을 사용중인 사용자: ${claimedByUser[0].nickname} (${claimedByUser[0].userId})` : '보관함을 사용중인 사용자가 없습니다.'
     const sharedUserDescription = sharedUser.map(s => {
-        return (<p>
+        return (<p key={s.userId}>
             {s.nickname} ({s.userId})
         </p>)
     })
     const shareRequestListDescription = shareRequestList.map(s => {
-        return (<p>
+        return (<p key={s.userId}>
             {s.nickname} ({s.userId})
         </p>)
     })

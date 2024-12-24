@@ -1,7 +1,6 @@
 'use client'
 
-import { AppShell, AppShellHeader, AppShellMain, AppShellNavbar, Burger, Button, Code, Group, NavLink, Text } from "@mantine/core";
-import { Metadata } from "next";
+import { AppShell, AppShellHeader, AppShellMain, AppShellNavbar, Burger, Button, Group, NavLink, Text } from "@mantine/core";
 import React from "react";
 import classes from '@/styles/admin/NavbarSimpleColored.module.css';
 import {
@@ -9,15 +8,9 @@ import {
     IconBox,
     IconLogout,
     IconLogin,
-    IconGauge,
-    IconFingerprint
 } from '@tabler/icons-react';
-import { MantineLogo } from "@mantinex/mantine-logo";
 import Link from "next/link";
 import SignOutForm from "@/components/auth/LogoutForm";
-import { cookies } from "next/headers";
-import { checkAuthToken } from "@/utils";
-import fetchUserInfo from "@/actions/user/userInfo";
 import { useDisclosure } from "@mantine/hooks";
 
 const data = [

@@ -1,5 +1,7 @@
 import { IUserInfo } from "../user"
 
+export type LockerStatus = 'Empty' | 'Share_Available' | 'Unavailable' | 'Maintenance';
+
 export interface IAccessHistory {
     userId: string
     accessTime: string
@@ -20,7 +22,7 @@ export interface ILocker {
     buildingNumber: number
     floorNumber: number
     lockerNumber: number
-    status: string,
+    status: LockerStatus,
 }
 
 // GET /api/locker
@@ -29,7 +31,7 @@ export interface ILockerDetail {
     buildingNumber: number
     floorNumber: number
     lockerNumber: number
-    status: string
+    status: LockerStatus
     claimedByUser: IUserInfo[]
     sharedWithUsers: IUserInfo[]
     shareRequestedUsers: IUserInfo[]
@@ -38,7 +40,7 @@ export interface ILockerDetail {
 
 export interface ILockerInfo {
     lockerNumber: number
-    status: string
+    status: LockerStatus
 }
 
 export interface IAssignedLocker {
@@ -51,7 +53,7 @@ export interface IAssignedLocker {
         // claimedBy: IUserInfo,
         // sharedWith: IUserInfo[]
         // sharedRequested: IUserInfo[]
-        status: string
+        status: LockerStatus
     }
 }
 

@@ -2,7 +2,7 @@
 
 import createLockerAction from "@/actions/locker/createLocker"
 import { ILockerStructure } from "@/interfaces/api/locker";
-import { Button, NativeSelect, NumberInput, Text } from "@mantine/core";
+import { Button, NativeSelect, NumberInput, Stack, Text } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useCallback, useEffect, useState } from "react";
 import { useFormState } from "react-dom"
@@ -63,25 +63,29 @@ export default function LockerCreateForm({ lockerStructure }: {
         <>
             <Text>보관함 추가</Text>
             <form action={formAction}>
-                <NativeSelect name='buildingNumber' value={selectedBuildingNumber} label='건물을 선택하세요' onChange={handleBuildingChange}>
-                    <option>건물 선택</option>
-                    {buildingOptions}
-                </NativeSelect>
+                <Stack>
+                    <Stack>
+                        <NativeSelect name='buildingNumber' value={selectedBuildingNumber} label='건물을 선택하세요' onChange={handleBuildingChange}>
+                            <option>건물 선택</option>
+                            {buildingOptions}
+                        </NativeSelect>
 
-                {selectedBuildingNumber && (
-                    <NativeSelect name='floorNumber' value={selectedFloor} label='층을 선택하세요' onChange={handleFloorChange}>
-                        <option>층 선택</option>
-                        {floorOptions}
-                    </NativeSelect>
-                )}
+                        {selectedBuildingNumber && (
+                            <NativeSelect name='floorNumber' value={selectedFloor} label='층을 선택하세요' onChange={handleFloorChange}>
+                                <option>층 선택</option>
+                                {floorOptions}
+                            </NativeSelect>
+                        )}
 
-                {selectedFloor && (
-                    <NumberInput name='lockerNumber' label='보관함 번호를 입력하세요' placeholder="보관함 번호"></NumberInput>
-                )}
+                        {selectedFloor && (
+                            <NumberInput name='lockerNumber' label='보관함 번호를 입력하세요' placeholder="보관함 번호"></NumberInput>
+                        )}
+                    </Stack>
 
-                <Button type='submit' disabled={submitValidation ? false : true}>
-                    생성
-                </Button>
+                    <Button type='submit' disabled={submitValidation ? false : true}>
+                        생성
+                    </Button>
+                </Stack>
             </form>
         </>
     );

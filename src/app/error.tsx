@@ -18,7 +18,7 @@ export default function Error({
   return (
     <div>
       <h2>오류가 발생했어요!</h2>
-      <p>{error.message}</p>
+      <p>{error.digest}</p>
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment

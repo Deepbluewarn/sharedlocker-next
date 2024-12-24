@@ -2,7 +2,7 @@
 
 import deleteUser from "@/actions/auth/deleteUser";
 import { IUserInfo } from "@/interfaces/api/user";
-import { Button } from "@mantine/core";
+import { Button, Stack } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -32,8 +32,9 @@ export default function DeleteUser(props: { user: IUserInfo }) {
     return (
         <form action={formAction}>
             <input type="hidden" name="userId" value={props.user.userId} />
-            <SubmitRoleUpdate />
+            <Stack align="flex-end">
+                <SubmitRoleUpdate />
+            </Stack>
         </form>
-
     )
 }
