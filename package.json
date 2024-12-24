@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:dev": "pm2 startOrRestart ecosystem.config.js --only sharedLocker-next-dev --env dev",
+    "deploy:prod": "next build && pm2 startOrRestart ecosystem.config.js --only sharedLocker-next-product --env prod"
   },
   "dependencies": {
     "@mantine/core": "^7.10.1",
